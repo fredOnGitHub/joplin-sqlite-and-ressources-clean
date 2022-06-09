@@ -150,6 +150,7 @@ for s in to_delete:
     # com='Remove-Item -Confirm \'%s\''%(src_i)
     com='Remove-Item "%s"'%(src_i)
     print(com)
+    # Executing PowerShell from Python
     subprocess.run(["powershell", "-Command", com])#,capture_output=True
 
 print('delete in BDD...')
