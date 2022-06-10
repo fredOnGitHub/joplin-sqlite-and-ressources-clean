@@ -6,7 +6,7 @@ After You would like to run "joplin-sqlite-and-ressources-clean.py" to
 
 - check BDD
 - delete ghost references
-- delete unused ressources (.png, .pdf,...) from ressources directory
+- delete unused ressources (.png, .pdf,...) from ressources directory with PowerShell commands
 
 
 You can see more info about sqlite and other implementation :
