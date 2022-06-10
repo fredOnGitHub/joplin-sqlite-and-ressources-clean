@@ -9,11 +9,13 @@ After You would like to run "joplin-sqlite-and-ressources-clean.py" to
 - delete unused ressources (.png, .pdf,...) from ressources directory
 
 
-You can 
+You can see more info about sqlite and other implementation :
 
 See https://www.youtube.com/watch?v=jXEf84OlU6A about tuto
 
 and  https://sqlitebrowser.org/dl/ to watch into the tables
+
+All is in database.sqlite
 
 See https://github.com/tessus/joplin-scripts/blob/master/jnrmor about joplin access DB
 
