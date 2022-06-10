@@ -1,5 +1,15 @@
 # sqlite-joplin-python-powershell
-acces sqlite joplin with python, powershell
+
+Be sure to stop completely joplin from taskbar (Windows)...
+
+After You would like to run "joplin-sqlite-and-ressources-clean.py" to 
+
+- check BDD
+- delete ghost references
+- delete unused ressources (.png, .pdf,...) from ressources directory
+
+
+You can 
 
 See https://www.youtube.com/watch?v=jXEf84OlU6A about tuto
 
