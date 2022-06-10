@@ -1,4 +1,4 @@
-# sqlite-joplin-python-powershell
+# joplin-sqlite-and-ressources-clean
 
 Be sure to stop completely joplin from taskbar (Windows)...
 
