@@ -1,5 +1,7 @@
 # joplin-sqlite-and-ressources-clean
 
+It is not guaranteed that it works for you but for me it works very well and there is a request for confirmation before any deletion of physical elements.
+
 Be sure to stop completely joplin from taskbar (Windows)...
 
 After You would like to run "joplin-sqlite-and-ressources-clean.py" to 
