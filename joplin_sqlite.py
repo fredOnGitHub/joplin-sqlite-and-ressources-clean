@@ -1,3 +1,5 @@
+# Créer l'exécutable
+# pyinstaller.exe --onefile .\joplin_sqlite.py
 
 import sqlite3
 from pathlib import Path
