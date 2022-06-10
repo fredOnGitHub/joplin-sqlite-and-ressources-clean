@@ -111,4 +111,5 @@ for s in R:
         # print(com)
         subprocess.run(["powershell", "-Command", com])#,capture_output=True
 
+cur.close()
 conn.close()
