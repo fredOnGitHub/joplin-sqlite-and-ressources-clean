@@ -14,18 +14,13 @@ def Clean():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def delete_in_BDD(cur):
-    print('delete in BDD...')
-    req='''delete from note_resources where is_associated = 0'''
+    print()
+    req='delete from note_resources where is_associated = 0'
     print(req)
-    result=cur.execute(req)
-    for row in result:
-        print(row[0])
-    # req='delete from note_resources where is_associated = 0'
-    # print(req)
-    # cur.execute(req)
-    # print(cur.rowcount,"delete(s) before commiting")
-    # conn.commit()
-    # print('done')
+    cur.execute(req)
+    print(cur.rowcount,"delete(s) before commiting")
+    conn.commit()
+    print('done')
 
 def count(req):
     # result=cur.execute(req)
@@ -48,33 +43,36 @@ def print_req_result(req):
     result=cur.execute(req)#re-faire
     for row in result:
         print(row[0])
-    
+
 Clean()
-f=Path(Path.home(), '.config', 'joplin-desktop', 'database.sqlite')
-conn=sqlite3.connect(f)
+database_sqlite=Path(Path.home(), '.config', 'joplin-desktop', 'database.sqlite')
+conn=sqlite3.connect(database_sqlite)
 cur=conn.cursor()
-
-delete_in_BDD(cur)
-
 count('select count(*) from note_resources')
-print()
+count('select count(*) from note_resources where is_associated = 1')
+count('select count(distinct resource_id) from note_resources where is_associated = 1')
+count('select count(*) from note_resources where is_associated = 0')
 
-# vecteur de tous les fichiers du rép 'ressources'
+# delete_in_BDD(cur)#joplin re-create always the deleted "is_associated = 0"
+
+print()
+# exit(0)
+# tous les fichiers du rép 'ressources'
 R=[]
-f=Path(Path.home(), '.config', 'joplin-desktop', 'resources')
-for (repertoire, sousRepertoires, fichiers) in os.walk(f):
+path_resources=Path(Path.home(), '.config', 'joplin-desktop', 'resources')
+for (repertoire, sousRepertoires, fichiers) in os.walk(path_resources):
     if len(fichiers):
         for i in fichiers:
             R.append(i)
 nb5=len(R)
-print('Number of elements in "%s" directory'%(f))
-print('%d'%(nb5),'elements in vector')
+print('Number of elements in "%s" directory'%(path_resources))
+print('%d'%(nb5))
 print()
 
 
 setBDD=set()
 # print(type(setRessources))
-req='select resource_id from note_resources where is_associated = 1'
+req='select distinct resource_id from note_resources where is_associated = 1'
 print(req)
 result=cur.execute(req)
 for row in result:
@@ -84,7 +82,6 @@ print()
 # print(setBDD)
 # exit(0)
 
-# count('select count(distinct resource_id) from note_resources where is_associated = 1')
 # exit(0)
 
 
@@ -100,12 +97,12 @@ print()
 # exit(0)
 
 
-rep=Path(Path.home(), '.config', 'joplin-desktop', 'joplin-moved')
-if os.path.exists(rep):
-    print(rep,'exists')
+joplin_moved=Path(Path.home(), '.config', 'joplin-desktop', 'joplin-moved')
+if os.path.exists(joplin_moved):
+    print(joplin_moved,'exists')
 else:
-    os.mkdir(rep)
-    print(rep,'created')
+    os.mkdir(joplin_moved)
+    print(joplin_moved,'created')
 
 
 founded=0
@@ -116,16 +113,16 @@ for ri in R:
     set_i = set([ri_split])
     if not set_i.intersection(setBDD):
         notFounded+=1
-        
-        fsrc=Path(f,ri)
-        fdest=Path(rep,ri)
-        
+
+        fsrc=Path(path_resources,ri)
+        fdest=Path(joplin_moved,ri)
+
         if os.path.exists(fdest):
             print(fdest,'exists')
         else:
             print(fsrc, '->', fdest)
             os.rename(fsrc, fdest)
-        
+
         # com='Remove-Item -Confirm "%s"'%(fsrc)
         # print(com)
         # subprocess.run(["powershell", "-Command", com])#,capture_output=True
@@ -134,7 +131,7 @@ for ri in R:
         founded+=1
 print()
 print('founded : ', founded)
-print('notFounded : ', notFounded)
+print('notFounded and moved : ', notFounded)
 print()
 
 cur.close()
