@@ -4,7 +4,6 @@ Be sure to stop completely joplin from taskbar (Windows)...
 
 After You would like to run "joplin-sqlite-and-ressources-clean.py" to 
 
-- delete ghost ref from Database (delete from note_resources where is_associated = 0)
 - move ghost references from resources Joplin's directory (.png, .pdf,...) 
 
 
